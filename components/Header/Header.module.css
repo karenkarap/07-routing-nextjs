@@ -24,6 +24,7 @@
     padding: 0;
     display: flex;
     gap: 1rem;
+    align-items: center;
 }
 
 .navigation li a {
@@ -35,3 +36,4 @@
 .navigation li a:hover {
     color: #ddd;
 }
+

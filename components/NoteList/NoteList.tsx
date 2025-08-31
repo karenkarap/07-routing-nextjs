@@ -24,6 +24,7 @@ function NoteList({ data }: NoteListProps) {
         <li key={note.id} className={css.listItem}>
           <h2 className={css.title}>{note.title}</h2>
           <p className={css.content}>{note.content}</p>
+
           <div className={css.footer}>
             <span className={css.tag}>{note.tag}</span>
             <Link className={css.details} href={`/notes/${note.id}`}>

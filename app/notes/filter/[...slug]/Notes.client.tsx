@@ -13,14 +13,18 @@ import { useDebouncedCallback } from 'use-debounce';
 import css from './NotesClient.module.css';
 import Modal from '@/components/Modal/Modal';
 
-export const NotesClient = () => {
+interface NotesClientProps {
+  tag: string | undefined;
+}
+
+export const NotesClient = ({ tag }: NotesClientProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [noteQuery, setNoteQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data, isLoading, isSuccess, isError } = useQuery<noteHttpResponse>({
-    queryKey: ['notes', currentPage, noteQuery],
-    queryFn: () => fetchNotes(currentPage, noteQuery),
+    queryKey: ['notes', currentPage, noteQuery, tag],
+    queryFn: () => fetchNotes(currentPage, noteQuery, tag),
     placeholderData: keepPreviousData,
     refetchOnMount: false,
   });
@@ -54,7 +58,7 @@ export const NotesClient = () => {
 
   return (
     <div className={css.app}>
-      <header className={css.toolbar}>
+      <section className={css.toolbar}>
         <SearchBox setNoteQuery={handleSearchQueryChange} />
 
         {data && data.totalPages > 1 && (
@@ -68,7 +72,7 @@ export const NotesClient = () => {
         <button onClick={openModal} className={css.button}>
           Create note +
         </button>
-      </header>
+      </section>
       {isLoading && <BeatLoader color="#0d6efd" size={20} />}
 
       {isModalOpen && (
