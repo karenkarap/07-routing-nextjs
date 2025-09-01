@@ -45,7 +45,7 @@ const NotePreview = ({ id }: NotePreviewProps) => {
 
           <div className={css.wrapper}>
             <span className={css.tag}>{note.tag}</span>
-            <button className={css.backBtn} onClick={router.back}>
+            <button className={css.backBtn} onClick={handleClose}>
               Back
             </button>
             <p className={css.date}>{date.toLocaleString().replace(',', '')}</p>

@@ -14,7 +14,7 @@ async function Notes({ params }: NotesParams) {
 
   await queryClient.prefetchQuery({
     queryKey: ['notes', tag],
-    queryFn: () => fetchNotes(1, ''),
+    queryFn: () => fetchNotes(1, tag),
   });
 
   return (
